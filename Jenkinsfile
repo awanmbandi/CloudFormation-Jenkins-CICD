@@ -27,7 +27,7 @@ pipeline {
         // }
         stage('Update Prod Stack') {
             steps {
-            sh "aws cloudformation update-stack --stack-name ventura-prod-infra-v1 --template-body ventura-prod-env-infra.yaml --parameters file://ventura-infra-parametafile.json --region 'us-east-1'"
+            sh "aws cloudformation update-stack --stack-name ventura-prod-infra-v1 --use-previous-template --parameters file://ventura-infra-parametafile.json --region 'us-east-1'"
             }
         }
         // stage('Slack Notification'){
