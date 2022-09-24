@@ -817,10 +817,5 @@ Resources:
       - Key: Name
         Value: venturaproddb
     DeletionPolicy: Snapshot
-  
-  s3Bucket:
-    Type: AWS::S3::Bucket
-    Properties: 
-      BucketName: mbandi-mbandi-23455667788
 
 Outputs: {}
