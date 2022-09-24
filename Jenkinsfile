@@ -15,21 +15,21 @@ pipeline {
             sh "aws cloudformation estimate-template-cost --template-body file://ventura-prod-env-infra.yaml --parameters file://ventura-infra-parametafile.json --region 'us-east-1'"
             }
         }
-        stage('Approval for Prod') {
-            steps {
-            input('Do you want to proceed considering cost?')
-            }
-        }
-        stage('Create Prod Stack') {
-            steps {
-            sh "aws cloudformation create-stack --stack-name ventura-prod-infra-v1 --template-body file://ventura-prod-env-infra.yaml --parameters file://ventura-infra-parametafile.json --region 'us-east-1'"
-            }
-        }
-        // stage('Update Prod Stack') {
+        // stage('Approval for Prod') {
         //     steps {
-        //     sh "aws cloudformation update-stack --stack-name s3bucket --template-body file://ventura-network-infra.yaml --region 'us-east-1'"
+        //     input('Do you want to proceed considering cost?')
         //     }
         // }
+        // stage('Create Prod Stack') {
+        //     steps {
+        //     sh "aws cloudformation create-stack --stack-name ventura-prod-infra-v1 --template-body file://ventura-prod-env-infra.yaml --parameters file://ventura-infra-parametafile.json --region 'us-east-1'"
+        //     }
+        // }
+        stage('Update Prod Stack') {
+            steps {
+            sh "aws cloudformation update-stack --stack-name s3bucket --template-body file://ventura-network-infra.yaml --region 'us-east-1'"
+            }
+        }
         // stage('Slack Notification'){
         //    slackSend baseUrl: 'https://hooks.slack.com/services/',
         //    channel: '#jenkins-pipeline-demo',
